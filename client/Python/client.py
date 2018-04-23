@@ -22,6 +22,8 @@ class JudgeServerClient(object):
         if data:
             kwargs["data"] = json.dumps(data)
         try:
+            print(url)
+            print(requests.post(url, **kwargs))
             return requests.post(url, **kwargs).json()
         except Exception as e:
             raise JudgeServerClientError(str(e))
@@ -50,7 +52,7 @@ class JudgeServerClient(object):
 
 
 if __name__ == "__main__":
-    token = "YOUR_TOKEN_HERE"
+    token = "db566c771e8ca6eb9196a08b16d656c1"
 
     c_src = r"""
     #include <stdio.h>
@@ -103,7 +105,7 @@ print int(s1[0]) + int(s1[1])"""
 s1 = s.split(" ")
 print(int(s1[0]) + int(s1[1]))"""
 
-    client = JudgeServerClient(token=token, server_base_url="http://127.0.0.1:12358")
+    client = JudgeServerClient(token=token, server_base_url="http://127.0.0.1:8090")
     print("ping")
     print(client.ping(), "\n\n")
 

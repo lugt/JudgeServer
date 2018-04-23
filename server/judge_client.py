@@ -47,7 +47,7 @@ class JudgeClient(object):
             with open(os.path.join(self._test_case_dir, "info")) as f:
                 return json.load(f)
         except IOError:
-            raise JudgeClientError("Test case not found")
+            raise JudgeClientError("Test case not found" + self._test_case_dir)
         except ValueError:
             raise JudgeClientError("Bad test case config")
 

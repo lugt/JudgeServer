@@ -1,6 +1,6 @@
 import json
 import os
-
+import time
 import requests
 
 from exception import JudgeServiceError
@@ -38,8 +38,12 @@ class JudgeService(object):
 if __name__ == "__main__":
     try:
         service = JudgeService()
-        service.heartbeat()
-        exit(0)
+        var = 1
+        while var == 1 :
+            #time.sleep(2)
+            service.heartbeat()            
+            time.sleep(2)
+        #exit(0)
     except Exception as e:
         logger.exception(e)
         exit(1)

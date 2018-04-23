@@ -16,6 +16,6 @@ RUN_GROUP_GID = grp.getgrnam("nogroup").gr_gid
 COMPILER_USER_UID = pwd.getpwnam("compiler").pw_uid
 COMPILER_GROUP_GID = grp.getgrnam("compiler").gr_gid
 
-TEST_CASE_DIR = "/test_case"
+TEST_CASE_DIR = "/tests/test_case"
 SPJ_SRC_DIR = "/spj"
 SPJ_EXE_DIR = "/spj"

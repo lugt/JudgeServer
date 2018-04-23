@@ -24,8 +24,8 @@ class JudgeServerClientForTokenHeaderTest(JudgeServerClient):
 
 class JudgeServerTest(unittest.TestCase):
     def setUp(self):
-        self.token = "YOUR_TOKEN_HERE"
-        self.server_base_url = "http://127.0.0.1:12358"
+        self.token = "db566c771e8ca6eb9196a08b16d656c1"
+        self.server_base_url = "http://127.0.0.1:8090"
         self.client = JudgeServerClient(token=self.token, server_base_url=self.server_base_url)
 
     def test_success(self):

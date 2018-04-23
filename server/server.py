@@ -66,7 +66,7 @@ class JudgeServer:
                 src_path = os.path.join(submission_dir, compile_config["src_name"])
 
                 # write source code into file
-                with open(src_path, "w", encoding="utf-8") as f:
+                with open(src_path, "w") as f: # encoding="utf-8"
                     f.write(src)
 
                 # compile source code, return exe file path
@@ -75,9 +75,9 @@ class JudgeServer:
                                               output_dir=submission_dir)
             else:
                 exe_path = os.path.join(submission_dir, run_config["exe_name"])
-                with open(exe_path, "w", encoding="utf-8") as f:
+                with open(exe_path, "w") as f: #encoding="utf-8"
                     f.write(src)
-
+            print("It's running client")
             judge_client = JudgeClient(run_config=language_config["run"],
                                        exe_path=exe_path,
                                        max_cpu_time=max_cpu_time,
@@ -100,7 +100,7 @@ class JudgeServer:
 
         # if spj source code not found, then write it into file
         if not os.path.exists(spj_src_path):
-            with open(spj_src_path, "w", encoding="utf-8") as f:
+            with open(spj_src_path, "w") as f: #encoding='utf-8'
                 f.write(src)
         try:
             Compiler().compile(compile_config=spj_compile_config,
@@ -113,9 +113,11 @@ class JudgeServer:
 
 
 @app.route('/', defaults={'path': ''})
-@app.route('/<path:path>', methods=["POST"])
+@app.route('/<path:path>', methods=["POST","GET"])
 def server(path):
     if path in ("judge", "ping", "compile_spj"):
+        logger.warning("app reached" + path)
+        print("app reached," + path)
         _token = request.headers.get("X-Judge-Server-Token")
         try:
             if _token != token:
